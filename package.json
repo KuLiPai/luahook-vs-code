@@ -2,6 +2,8 @@
   "name": "luahook-vs-code",
   "displayName": "LuaHook VS Code",
   "description": "add LuaHook support for VScode",
+  "publisher": "KuLiPai",
+  "icon": "icon.png",
   "repository": {
     "type": "git",
     "url": "https://github.com/KuLiPai/luahook-vs-code.git"
