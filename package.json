@@ -1,0 +1,119 @@
+{
+  "name": "luahook-vs-code",
+  "displayName": "LuaHook VS Code",
+  "description": "add LuaHook support for VScode",
+  "version": "0.0.1",
+  "engines": {
+    "vscode": "^1.85.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+    "onView:luahookAppsView",
+    "onCommand:luahook.pullFromDevice",
+    "onCommand:luahook.runAppHooks",
+    "onCommand:luahook.editScriptConfig",
+    "onCommand:luahook.openLogs"
+  ],
+  "main": "./dist/extension.js",
+  "contributes": {
+    "configuration": {
+      "title": "LuaHook Helper",
+      "properties": {
+        "luahook.adbPath": {
+          "type": "string",
+          "default": "adb",
+          "description": "adb 命令路径（默认直接用 adb，如果你需要指定全路径，可在这里配置）"
+        },
+        "luahook.remoteRoot": {
+          "type": "string",
+          "default": "/data/local/tmp/LuaHook",
+          "description": "LuaHook 在手机上的根目录"
+        },
+        "luahook.localCacheRoot": {
+          "type": "string",
+          "default": "${workspaceFolder}/.luahook-cache",
+          "description": "本地缓存 LuaHook 配置的目录"
+        }
+      }
+    },
+    "views": {
+      "explorer": [
+        {
+          "id": "luahookAppsView",
+          "name": "LuaHook Apps"
+        }
+      ]
+    },
+    "commands": [
+      {
+        "command": "luahook.pullFromDevice",
+        "title": "LuaHook: 从设备拉取配置"
+      },
+      {
+        "command": "luahook.runAppHooks",
+        "title": "LuaHook: 运行当前应用脚本"
+      },
+      {
+        "command": "luahook.editScriptConfig",
+        "title": "LuaHook: 编辑脚本配置"
+      },
+      {
+        "command": "luahook.openLogs",
+        "title": "LuaHook: 打开 LuaXposed 日志"
+      },
+      {
+        "command": "luahook.createScript",
+        "title": "LuaHook: 新建脚本"
+      }
+    ],
+    "menus": {
+      "view/item/context": [
+        {
+          "view": "luahookAppsView",
+          "command": "luahook.runAppHooks",
+          "group": "inline",
+          "when": "viewItem == luahookApp"
+        },
+        {
+          "view": "luahookAppsView",
+          "command": "luahook.editScriptConfig",
+          "group": "inline",
+          "when": "viewItem == luahookScript"
+        },
+        {
+          "view": "luahookAppsView",
+          "command": "luahook.createScript",
+          "when": "viewItem == luahookApp"
+        }
+      ]
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run package",
+    "compile": "npm run check-types && npm run lint && node esbuild.js",
+    "watch": "npm-run-all -p watch:*",
+    "watch:esbuild": "node esbuild.js --watch",
+    "watch:tsc": "tsc --noEmit --watch --project tsconfig.json",
+    "package": "npm run check-types && npm run lint && node esbuild.js --production",
+    "compile-tests": "tsc -p . --outDir out",
+    "watch-tests": "tsc -p . -w --outDir out",
+    "pretest": "npm run compile-tests && npm run compile && npm run lint",
+    "check-types": "tsc --noEmit",
+    "lint": "eslint src",
+    "test": "vscode-test"
+  },
+  "devDependencies": {
+    "@types/mocha": "^10.0.10",
+    "@types/node": "22.x",
+    "@types/vscode": "^1.85.0",
+    "@vscode/test-cli": "^0.0.12",
+    "@vscode/test-electron": "^2.5.2",
+    "esbuild": "^0.27.0",
+    "eslint": "^9.39.1",
+    "npm-run-all": "^4.1.5",
+    "typescript": "^5.9.3",
+    "typescript-eslint": "^8.46.3"
+  }
+}
