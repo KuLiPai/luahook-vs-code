@@ -68,6 +68,26 @@ adb shell su -c "echo OK"
 
 ---
 
+# 使用方法
+
+用VSCode打开一个目录，用于存放LuaHook配置和缓存文件
+
+Ctrl + Shift + P  → LuaHook: 从设备拉取配置
+
+在左侧文件列表最下面 LuaHook Apps 视图 中：
+
+![Example](./img/image.png)
+
+点击包名，展开一个应用的所有hook代码
+
+右键包名 → 新建脚本
+
+点击某脚本 → 自动打开 .lua 文件
+
+点击运行当前应用脚本: 自动保存代码并重启app生效hook
+
+---
+
 # ✨ 功能特性（Features）
 
 ## 🗂 1. LuaHook 脚本树（TreeView）
@@ -151,18 +171,6 @@ LuaHook 是由 **KuLiPai** 开发的一款 Android Lua Hook 框架。
 
 本扩展是 LuaHook 的配套工具，但 LuaHook 本身**不依赖**本插件。
 
----
-
-# ❤️ 关于本插件的开发
-
-本插件由 **ChatGPT（GPT-5.1）全程辅助完成**。
-
----
-
-# 🪪 License
-
-本项目使用 **MIT License**
-允许二次开发、商业使用、修改与分发。
 
 ---
 
@@ -183,16 +191,14 @@ code --install-extension luahook-vs-code-*.vsix
 
 ---
 
-# 🎉 最后
 
-如果你正在使用 LuaHook，那么这个插件会让你得到：
+# ❤️ 关于本插件的开发
 
-✔ 快速调试
-✔ 极速热更新
-✔ 自动日志
-✔ 极简操作
-✔ 远超 Frida 的 Hook 流程速度
+本插件由 **ChatGPT（GPT-5.1）全程辅助完成**。
 
-这是一次 Hook 调试体验的全面升级。
+---
 
-欢迎给项目点 ⭐，也欢迎反馈建议！
+# 🪪 License
+
+本项目使用 **MIT License**
+允许二次开发、商业使用、修改与分发。
